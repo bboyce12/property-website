@@ -1,0 +1,148 @@
+.property-whole-container {
+    position:relative;
+    display: flex;
+    flex-direction: column;
+}
+
+.property-bottom-container {
+ display: flex;
+ flex-direction: row;
+ margin-left: 70px;
+}
+
+.property-bottom-left-container {
+    display: flex;
+    flex-direction: column;
+    flex-basis: 70%;
+}
+
+.property-bottom-right-container{
+    display: flex;
+    flex-direction: column;
+    flex-basis: 30%;
+}
+
+.summary-container {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 80vh;
+    background-image: url("../assets/property-image-1.webp");
+    background-size: cover;
+    z-index: 2;
+}
+
+.summary-container::before{
+    content: "";    
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(128, 128, 128, 0.5); /* Semi-transparent overlay */
+    z-index: 1; /* Ensure it's above the background but below content */
+}
+
+.summary-container > * {
+    position: relative;
+    z-index: 3;
+}
+
+.summary-container >div {
+    color: white;
+    font-size: 20px;
+}
+
+.icon-container, .icon-container div {
+    background-color: transparent;
+}
+
+.property-bottom-container{
+    margin-top: 20px;
+}
+
+.property-container{
+    margin-top: 20px;
+}
+
+.image-container {
+    width: 100%;
+}
+
+.video-container {
+    position: relative;
+    width: 100%;           /* Full width of the parent */
+    padding-top: 56.25%;   /* 16:9 Aspect Ratio */
+    height: 0;             /* Height set to 0 to maintain aspect ratio */
+    overflow: hidden;      /* Hide overflow */
+}
+
+.video-container iframe {
+    position: absolute;     /* Position absolute for the iframe */
+    bottom: 0;                /* Align to the top */
+    left: 0;               /* Align to the left */
+    width: 100%;           /* Full width of the container */
+    height: 100%;          /* Full height of the container */
+}
+
+.floor-plan-container {
+    width: 30%;
+    height: 50%;
+}
+.button-container {
+    display: flex;
+    justify-content: center;
+}
+
+.description-container {
+    flex-grow: 0;
+}
+
+.skeleton-property-container {
+    background: linear-gradient(90deg, lightgray 0%, white 30%, lightgray 75%);
+    background-size: 100% 100%; /* Adjust size for the shimmer effect */
+    width: 100vw;
+    height: 80vh;
+    animation: shimmer-property 1s infinite;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position:relative;
+}
+
+.skeleton-property-button-container {
+    position:absolute;
+    top: 50%;
+    display: flex;
+    justify-content: center;
+}
+
+.skeleton-property-button {
+    background-color: black;
+    border-radius: 5px;
+    width: 90px;
+    height: 40px;
+    margin: 10px;
+}
+
+@keyframes shimmer-property {
+    0% {
+      background-position: -1000px 0;
+    }
+    100% {
+      background-position: 1000px 0;
+    }
+  }
+
+@media (max-width: 768px) {
+    .property-bottom-container {
+        flex-direction: column;
+        margin-left: 5px;
+        margin-right: 5px;
+        padding-bottom: 300px;
+    }
+}
+

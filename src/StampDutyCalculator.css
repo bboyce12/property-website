@@ -1,0 +1,46 @@
+.calculator-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 100px;
+    margin: 10px 20px 10px 20px;
+
+}
+
+.calculator-form-container{
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+}
+.calculator-form-container label, .calculated-tax-container {
+    font-size: 20px;
+    margin-top: 15px;
+}
+
+
+.calculator-form-container input, select{
+    background-color: white;
+    border: 1px solid black;
+    border-radius: 5px;
+    color: black;
+    width: 250px;
+    height: 40px;
+    margin-top: 15px;
+}
+.calculator-form-container button {
+    margin-top: 30px;
+    border-radius: 5px;
+    background-color: green;
+}
+
+.calculated-tax-container {
+    margin-top: 20px;
+    border: 1px solid green;
+    padding: 15px 40px 15px 40px;
+    border-radius: 0px 10px 0px 10px;
+}
+
+#total-tax {
+    font-size: 35px;
+}

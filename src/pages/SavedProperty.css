@@ -1,0 +1,23 @@
+.saved-property-section-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.ads-container {
+  padding-bottom: 50px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(2, 1fr);
+  spacing: 20px;
+  gap: 20px;
+}
+
+
+@media (max-width: 768px) {
+  .ads-container {
+    grid-template-columns: repeat(1, 1fr);
+    grid-template-rows: repeat(auto, 1fr);
+  }
+}

@@ -1,0 +1,49 @@
+import React from "react";
+import ReactDOM from "react-dom/client";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import "./App.css";
+import Home from "./pages/Home";
+import Sales from "./pages/Sales";
+import "bootstrap/dist/css/bootstrap.min.css";
+import "bootstrap/dist/js/bootstrap.bundle.min.js";
+import "jquery";
+import "popper.js";
+import { fadeIn } from "./js/fadeIn";
+import AboutUs from "./AboutUs";
+import Navbar from "./Navbar";
+import ReviewPage from "./pages/ReviewPage";
+import PropertyForSale from "./pages/PropertyForSale";
+import SavedProperty from "./pages/SavedProperty";
+import StampDutyCalculator from "./StampDutyCalculator";
+import ValuationForm from "./ValuationForm";
+import GetInTouch from "./GetInTouch";
+import WhyUsPage from "./pages/WhyUsPage";
+import { createRoot } from "react-dom/client";
+import { useEffect } from "react";
+
+export default function App() {
+  useEffect(() => {
+    fadeIn();
+  }, []);
+
+  return (
+    <Router>
+      <Navbar />
+      <Routes>
+        <Route path="/propertyinfo/:asking_type/:status" element={<Sales />} />
+        <Route
+          path="/savedproperty/:asking_type/"
+          element={<SavedProperty />}
+        />
+        <Route path="/about/aboutus" element={<AboutUs />} />
+        <Route path="/about/reviews" element={<ReviewPage />} />
+        <Route path="/" element={<Home />} />
+        <Route path="/property/sale" element={<PropertyForSale />} />
+        <Route path="/stampdutycalculator" element={<StampDutyCalculator />} />
+        <Route path="/getintouch" element={<GetInTouch />} />
+        <Route path="/valuationform" element={<ValuationForm />} />
+        <Route path="/whyus" element={<WhyUsPage />} />
+      </Routes>
+    </Router>
+  );
+}

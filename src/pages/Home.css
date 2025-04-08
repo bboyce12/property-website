@@ -1,0 +1,290 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box; /* Optional: ensures padding and border are included in total width/height */
+}
+
+html, body {
+    overflow: visible; /* Allow overflow from child elements */
+}
+
+#two-sides-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    width: 100%;
+    overflow: hidden;
+}
+
+#right-container, #left-container {
+    padding: 30% 50px 30% 50px;
+    width: 100%;
+    height: 500px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+#left-container {
+    border-radius: 100px 0px 0px 100px;
+}
+
+#right-container {
+    border-radius: 0px 100px 100px 0px;
+}
+
+#right-container h3, #left-container h3, 
+#right-container h5, #left-container h5{
+    width: 350px;
+    text-align: start;
+    height: fit-content;
+}
+
+#left-container h5, #right-container h5 {
+    font-size: 2rem;
+}
+
+#left-container h3, #right-container h3 {
+    font-size: 3rem !important;
+}
+
+#left-container {
+    background-color: green; /* Fallback color */
+    flex: 1 1 100px; 
+    transition: flex 1.5s ease;
+    position: relative; /* Required for positioning the pseudo-element */
+    overflow: hidden; /* To hide any overflow from the pseudo-element */
+}
+
+#left-container::before {
+    content: ""; 
+    position: absolute; /* Position it absolutely */
+    top: 0; /* Align to the top */
+    left: 0; /* Align to the left */
+    right: 0; /* Stretch to the right */
+    bottom: 0; /* Stretch to the bottom */
+    background-image: url("../assets/home-property-left-min.jpg");
+    background-size: cover; 
+    background-position: center; 
+    opacity: 0.3; /* Adjust opacity */
+}
+
+#left-container .content {
+    position: relative; /* Ensure stacking context */
+    z-index: 1; /* Bring content above pseudo-element */
+    color: white;
+    opacity: 1; /* Full opacity for content */
+}
+
+#right-container {
+    background-color: darkviolet;
+    flex: 1 1 100px;
+    transition: flex 1.5s ease;
+    position: relative; /* Required for positioning the pseudo-element */
+    overflow: hidden; /* To hide any overflow from the pseudo-element */
+}
+
+#right-container::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom:0;
+    right: 0;
+    background-image: url("../assets/home-property-right.jpg");
+    background-size: cover;
+    background-position: center;
+    opacity: 0.8;    
+}
+
+#right-container .content {
+    position: relative;
+    color: white;
+    z-index: 1;
+    opacity: 1;
+}
+
+#left-container:hover{
+    flex: 8 1 100px;
+}
+
+#right-container:hover{
+    flex: 8 1 100px;
+}
+
+#home-property-image {
+    position: absolute;
+    top:0;
+    left: 0;
+    width: 1500px;
+    height: fit-content;
+    opacity: 0.3;
+}
+
+
+.button-container {
+    width: 400px;
+    margin-top: 10px;
+    margin-left: -20px;
+}
+
+.button-container button {
+    margin: 5px;
+    border-radius: 5px;
+    font-weight: 700;
+}
+
+.button-container button:hover{
+    background-color: azure;
+    color: green;
+    border-color: green;
+}
+
+/* past-success-container */
+.past-success-container{
+    margin-top: 0px;
+    margin-bottom: 0px;
+    width: 100vw;
+    height: 150vh;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    overflow-x: hidden;
+    overflow-y: visible;
+}
+
+.past-success-content-container{
+    min-width: 250px;
+    width: 40vw;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.past-success-left-img-container img, .past-success-right-img-container img {
+    width: 500px;
+    height: 300px;
+    margin-top: 20px;
+    border-radius: 20px;
+    margin: 0;
+}
+
+.past-success-left-img-container{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+}
+
+.past-success-right-img-container{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+#past-success-text {
+    text-align: justify;
+}
+
+/* Our values */
+.our-values-container {
+    width: 100vw;
+    height: 100vh;
+    margin-top: 50px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.our-values-content {
+    position: relative;
+    width: 60%;
+    height: 100%;
+    overflow: hidden;
+    border-radius: 10px;
+}
+
+.our-values-background {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+}
+
+.our-values-background img{
+    width: 100vw;
+    height: auto;
+}
+
+.our-values-description-container {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.our-values-description{
+    color: white;
+    z-index: 2;
+    text-wrap: balance;
+    width: 500px;
+    text-align: center;
+}
+
+@media (min-width: 768px) {
+    /* Two sides */
+    #left-container .content, #right-container .content{
+        width: 30vw;
+        text-wrap: balance;
+    }
+
+    #left-container h3, #right-container h3{
+        font-size: 1rem !important;
+    }
+}
+
+
+
+@media (max-width: 767px) {
+    /* Two sides */
+    #two-sides-container {
+        flex-direction: column;
+        width: 100vw !important;
+    }
+    #left-container, #right-container {
+        padding: 150px;
+        border-radius: 15px;
+        flex-basis: 1;
+    }
+
+    #left-container .content, #right-container .content {
+        position: absolute;
+        top: 30%;
+        left: 10%;
+    }
+    #left-container h5, #right-container h5,
+    #left-container h3, #right-container h3 {
+        font-size: 1rem !important;
+        width: 70vw;
+
+    }
+    /* past-success-container */
+    .past-success-container{
+        height: 100vh;
+    }
+
+    /* Our values */
+    .our-values-container {
+        height: 50vh;
+        margin-top: 0px;
+    }
+}

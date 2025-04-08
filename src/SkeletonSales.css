@@ -1,0 +1,40 @@
+.skeleton-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: auto;
+}
+
+.skeleton-content {
+    margin: 50px;
+    background-color: lightgray;
+    width: 70%;
+    min-width: 300px;
+    min-height: 460px;
+    border-radius: 10px;
+    box-shadow: 5px 5px 10px 5px rgba(131, 131, 131, 0.5);
+    position: relative;
+    overflow: hidden;
+}
+
+.skeleton-content::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -150%;
+    width: 150%;
+    height: 100%;
+    background: linear-gradient(90deg, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.4) 50%, rgba(255, 255, 255, 0) 100%);
+    animation: shimmer 1.5s infinite;
+}
+
+@keyframes shimmer {
+    0% {
+        left: -150%;
+    }
+    50% {
+        left: 100%;
+    }
+    100% {
+        left: 150%;
+    }
+}

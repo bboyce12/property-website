@@ -1,0 +1,82 @@
+.valuation-form-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: start;
+    width: 50vw;
+    min-width: 380px;
+    margin: 0 auto;
+    height: 100vh;
+    padding: 20px;
+}
+
+.valuation-form-container h1 {
+ text-align: center;
+ margin-top: 50px;
+ margin-bottom: 50px;
+}
+
+.valuation-form-container input[type=text] {
+    background-color: lightgrey;
+    border: 0;
+    border-radius: 5px;
+    height: 40px;
+    color: rgba(53, 53, 53, 0.884);
+    transition: background-color 0.3s ease;
+}
+
+.valuation-form-container input[type=text]:hover {
+    background-color: whitesmoke;
+}
+
+
+.valuation-form-container form label {
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: 100;
+}
+
+#valuation-form-submit-btn {
+    border-radius: 5px;
+    margin-top: 20px;
+    background-color: yellowgreen;
+}
+
+#valuation-form-submit-btn:hover {
+    background-color: green;
+    border-color: green;
+}
+
+#form-checkbox-container label {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    border-radius: 5px;
+    width: 100%;
+}
+
+#form-checkbox-container input[type=checkbox] {
+    width: 20px;
+    height: 20px;
+    margin-right: 10px;
+    accent-color: green;
+}
+
+.row div, button {
+    margin-top: 30px;
+}
+
+#valuation-form-submit-success, #valuation-form-submit-fail {
+    margin-top: 10px;
+    display: none;
+}
+
+@media (max-width: 768px) {
+    .valuation-form-container {
+        height: 100vh;
+    }
+
+    .valuation-form-container h1 {
+        font-size: 24px;
+        margin: 0;
+    }
+}
