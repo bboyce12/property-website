@@ -24,6 +24,8 @@ function ValuationForm() {
       setFormData((prevData) => ({ ...prevData, [name]: value }));
     } catch (err) {
       console.log(err);
+      setError(err);
+      console.log("Error", error);
     }
   };
 
@@ -48,12 +50,14 @@ function ValuationForm() {
       }
     )
       .then((response) => {
-        if (!response.ok) {
+        if (!response.ok && failMessage) {
           failMessage.style.display = "block";
           throw new Error(`HTTP error. Status: ${response.status}`);
         } else {
-          successMessage.style.display = "block";
-          console.log("success");
+          if (successMessage) {
+            successMessage.style.display = "block";
+            console.log("success");
+          }
         }
         return data;
       })

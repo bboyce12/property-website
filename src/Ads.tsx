@@ -1,4 +1,3 @@
-import React from "react";
 import propertyImage from "./assets/property-image1.jpg";
 import bedroomIcon from "./assets/bedroom-icon-black.png";
 import bathroomIcon from "./assets/bathroom-icon-black.png";
