@@ -1,0 +1,96 @@
+import { jsx as _jsx, jsxs as _jsxs } from "react/jsx-runtime";
+import "./StampDutyCalculator.css";
+import { useState } from "react";
+
+function StampDutyCalculator() {
+    const [formData, setFormData] = useState({ status: "", price: "" });
+    const [totalTax, setTotalTax] = useState(0);
+    const [lastTaxBand, setLastTaxBand] = useState(null);
+    const [currentTaxBand, setCurrentTaxBand] = useState(0);
+    const [effectiveRate, setEffectiveRate] = useState(0);
+    // Standard tax
+    const standardTaxData = {
+        taxLadder: [
+        { threshold: 125000, rate: 0 },
+        { threshold: 250000, rate: 0.02 },
+        { threshold: 925000, rate: 0.05 },
+        { threshold: 1500000, rate: 0.1 },
+        { threshold: 99999999, rate: 0.12 }]
+        };
+    // First time buyer
+    const firstTimeBuyerTaxData = {taxLadder: [{ threshold: 300000, rate: 0 }, { threshold: 500000, rate: 0.05 }]};
+    // Additional house
+    const additionalBuyerTaxData = {
+        taxLadder:
+        [
+            { threshold: 125000, rate: 0.05 },
+            { threshold: 250000, rate: 0.07 },
+            { threshold: 925000, rate: 0.1 },
+            { threshold: 1500000, rate: 0.15 },
+            { threshold: 99999999, rate: 0.17 }
+        ]
+        };
+    const changeCalculatorData = (event) => {
+        const { name, value } = event.target;
+        setFormData((prevData) => ({ ...prevData, [name]: value }));
+    };
+    const handleCalculatorSubmit = (event) => {
+        event.preventDefault();
+        let taxData = standardTaxData.taxLadder;
+        const status = event.target.status.value;
+        const price = event.target.price.value; // directly assign price value
+        console.log(status);
+        console.log(price);
+        // status1: first time buyer, status2: moving house, status3: additional house
+        if (status === "status1" && price < 500000) {
+            taxData = firstTimeBuyerTaxData.taxLadder;
+        }
+        else if (status === "status3") {
+            taxData = additionalBuyerTaxData.taxLadder;
+        }
+        setTotalTax(0);
+        let subtotalTax = 0; // Init local variables for calculation
+        let calculatedTotalTax = 0;
+        console.log(Object.keys(taxData[0]));
+        console.log(Number(Object.values(taxData[currentTaxBand])[0]));
+        // First tier scenario
+        // Handle non-zero rate at first tier for additional house buyer
+        if (status === "status3") {
+            subtotalTax =
+                Number(Object.keys(taxData[0])[0]) *
+                    Number(Object.values(taxData[0])[0]);
+            calculatedTotalTax += subtotalTax;
+            // Price smaller than first tier
+        }
+        else if (price <= Number(Object.keys(taxData[0])[0])) {
+            setTotalTax(0);
+        }
+        // Iterate since second tier
+        for (let i = 1; i < taxData.length; i++) {
+            if (price >= Number(Object.keys(taxData[i])[0])) {
+                // Comparing price with tier threshold
+                console.log("larger");
+                subtotalTax =
+                    (Number(Object.keys(taxData[i])[0]) -
+                        Number(Object.keys(taxData[i - 1])[0])) *
+                        Number(Object.values(taxData[i])[0]);
+                calculatedTotalTax += subtotalTax;
+            }
+            else {
+                // break if price is not higher than next tier
+                const subtotalTax = (price - Number(Object.keys(taxData[i - 1])[0])) *
+                    Number(Object.values(taxData[i])[0]);
+                if (subtotalTax > 0) {
+                    calculatedTotalTax += subtotalTax;
+                    setEffectiveRate((calculatedTotalTax / price) * 100);
+                    setTotalTax(calculatedTotalTax);
+                }
+                break;
+            }
+        }
+        setEffectiveRate((calculatedTotalTax / price) * 100);
+        setTotalTax(calculatedTotalTax);
+    };
+    return (_jsxs("div", { className: "calculator-container fade-in-container", children: [_jsx("h1", { children: "Stamp Duty calculator" }), _jsxs("form", { className: "calculator-form-container", onSubmit: handleCalculatorSubmit, children: [_jsx("label", { htmlFor: "status", children: "Status: " }), _jsxs("select", { id: "options", name: "status", value: formData.status, onChange: changeCalculatorData, children: [_jsx("option", { value: "status1", children: "My first home" }), _jsx("option", { value: "status2", children: "My next home" }), _jsx("option", { value: "status3", children: "My additional property or second home" })] }), _jsx("label", { htmlFor: "price", children: "Price: " }), _jsx("input", { type: "number", name: "price", value: formData.price, onChange: changeCalculatorData }), _jsx("button", { type: "submit", children: "Calculate" })] }), _jsxs("div", { className: "calculated-tax-container", children: [_jsx("div", { children: "Stamp duty on your first home is " }), _jsxs("div", { id: "total-tax", children: ["\u00A3", totalTax] }), _jsxs("div", { children: ["The effective tax rate is ", effectiveRate, "%."] })] })] }));
+}
+export default StampDutyCalculator;

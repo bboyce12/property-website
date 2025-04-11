@@ -25,7 +25,7 @@ export default function App() {
   }, []);
 
   return (
-    <Router>
+    <Router basename="/property-website">
       <Navbar />
       <Routes>
         <Route path="/propertyinfo/:asking_type/:status" element={<Sales />} />

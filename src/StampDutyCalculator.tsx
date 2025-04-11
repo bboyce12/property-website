@@ -1,5 +1,10 @@
 import "./StampDutyCalculator.css";
-import { useState, useEffect } from "react";
+import { useState } from "react";
+
+// Define taxDataType
+interface TaxDataType {
+  taxLadder: Array<{ threshold: number; rate: number }>;
+}
 
 function StampDutyCalculator() {
   const [formData, setFormData] = useState({ status: "", price: "" });
@@ -8,25 +13,34 @@ function StampDutyCalculator() {
   const [currentTaxBand, setCurrentTaxBand] = useState(0);
   const [effectiveRate, setEffectiveRate] = useState(0);
   // Standard tax
-  const standardTaxData = [
-    { 125000: "0" },
-    { 250000: "0.02" },
-    { 925000: "0.05" },
-    { 1500000: "0.1" },
-    { 99999999: "0.12" },
-  ];
+  const standardTaxData: TaxDataType = {
+    taxLadder: [
+      { threshold: 125000, rate: 0 },
+      { threshold: 250000, rate: 0.02 },
+      { threshold: 925000, rate: 0.05 },
+      { threshold: 1500000, rate: 0.1 },
+      { threshold: 99999999, rate: 0.12 },
+    ],
+  };
 
   // First time buyer
-  const firstTimeBuyerTaxData = [{ 300000: "0" }, { 500000: "0.05" }];
+  const firstTimeBuyerTaxData: TaxDataType = {
+    taxLadder: [
+      { threshold: 300000, rate: 0 },
+      { threshold: 500000, rate: 0.05 },
+    ],
+  };
 
   // Additional house
-  const additionalBuyerTaxData = [
-    { 125000: "0.05" },
-    { 250000: "0.07" },
-    { 925000: "0.1" },
-    { 1500000: "0.15" },
-    { 99999999: "0.17" },
-  ];
+  const additionalBuyerTaxData = {
+    taxLadder: [
+      { threshold: 125000, rate: 0.05 },
+      { threshold: 250000, rate: 0.07 },
+      { threshold: 925000, rate: 0.1 },
+      { threshold: 1500000, rate: 0.15 },
+      { threshold: 99999999, rate: 0.17 },
+    ],
+  };
 
   const changeCalculatorData = (event) => {
     const { name, value } = event.target;
@@ -34,16 +48,16 @@ function StampDutyCalculator() {
   };
   const handleCalculatorSubmit = (event) => {
     event.preventDefault();
-    let taxData = standardTaxData;
+    let taxData = standardTaxData.taxLadder;
     const status = event.target.status.value;
     const price = event.target.price.value; // directly assign price value
     console.log(status);
     console.log(price);
     // status1: first time buyer, status2: moving house, status3: additional house
     if (status === "status1" && price < 500000) {
-      taxData = firstTimeBuyerTaxData;
+      taxData = firstTimeBuyerTaxData.taxLadder;
     } else if (status === "status3") {
-      taxData = additionalBuyerTaxData;
+      taxData = additionalBuyerTaxData.taxLadder;
     }
     setTotalTax(0);
 

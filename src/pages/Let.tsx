@@ -5,16 +5,34 @@ import Nav from "../Navbar";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.bundle.min.js";
 import "./Let.css";
+import shortlistHandler, {
+  PropertyMetaDataType,
+  PropertyInfoType,
+} from "./Sales.tsx";
 
 function Let() {
-  const [propertyInfo, setPropertyInfo] = useState("");
-  const [PropertyMetaData, setPropertyMetaData] = useState("");
+  const [propertyInfo, setPropertyInfo] = useState<PropertyInfoType>({
+    items: [],
+    hasMore: false,
+    limit: 0,
+    offset: 0,
+    count: 0,
+    links: [],
+  });
+
+  const [PropertyMetaData, setPropertyMetaData] =
+    useState<PropertyMetaDataType>({ items: [], limit: 6 });
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(true);
   const [page, setPage] = useState(0);
-  const [offset, setOffset] = useState("");
-  const prevPage = useRef();
+  const [offset, setOffset] = useState<number>();
+  const prevPage = useRef<number>();
   const { asking_type, status } = useParams();
+  const [shortlisted, setShortListed] = useState(
+    localStorage.getItem("shortlisted")
+      ? JSON.parse(localStorage.getItem("shortlisted"))
+      : []
+  );
 
   const pageHandler = (selectedPage) => {
     if (selectedPage >= 0) {
@@ -22,6 +40,12 @@ function Let() {
       setPage(selectedPage);
     }
   };
+
+  // Save shortlisted properties to local storage
+  useEffect(() => {
+    localStorage.setItem("shortlisted", JSON.stringify(shortlisted));
+    console.log(shortlisted);
+  }, [shortlisted]);
 
   // Obtaining total properties available for calculation of pages
   useEffect(() => {
@@ -93,7 +117,11 @@ function Let() {
                 className="ads-container col-12 col-md-4 mb-4"
                 key={item.property_id}
               >
-                <Ads propertyInfo={item} />
+                <Ads
+                  propertyInfo={item}
+                  shortlistInfo={shortlisted}
+                  shortlistHandler={shortlistHandler}
+                />
               </div>
             ))
           )}

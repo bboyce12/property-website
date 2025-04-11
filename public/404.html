@@ -1,0 +1,7 @@
+<script type="text/javascript">
+    // Redirect all 404 errors to index.html to allow React Router to handle routing
+    var path = window.location.pathname;
+    if (path !== '/' && path !== '/index.html') {
+      window.location.replace('/');
+    }
+  </script>

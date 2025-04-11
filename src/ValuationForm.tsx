@@ -22,7 +22,7 @@ function ValuationForm() {
     try {
       const { name, value } = event.target;
       setFormData((prevData) => ({ ...prevData, [name]: value }));
-    } catch (err) {
+    } catch (err: any) {
       console.log(err);
       setError(err);
       console.log("Error", error);

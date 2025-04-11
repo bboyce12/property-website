@@ -7,31 +7,75 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.bundle.min.js";
 import "./Sales.css";
 
+// Defining the interface for the property meta data
+export interface PropertyMetaDataType {
+  items: Array<{ "count(*)": number }>;
+  limit: number;
+}
+
+// Defining the interface for the property information
+export interface PropertyInfoType {
+  items: Array<{
+    asking_type: string;
+    address: string;
+    postcode: string;
+    price: number;
+    excess_offer: number;
+    video_uri: string;
+    bedroom: number;
+    bathroom: number;
+    livingroom: number;
+    floor_plan_uri: string;
+    status: string;
+    property_id: number;
+    features: string;
+    description_info: string;
+    pseudo_column: any;
+  }>;
+  hasMore: boolean;
+  limit: number;
+  offset: number;
+  count: number;
+  links: Array<{
+    rel: string;
+    href: string;
+  }>;
+}
+
+// Shortlist handler
+export const shortlistHandler = (setShortListed, property_id) => {
+  setShortListed((prev) => {
+    if (prev.includes(property_id)) {
+      return prev.filter((id) => id !== property_id);
+    } else {
+      return [...prev, property_id];
+    }
+  });
+};
+
 function Sales() {
-  const [propertyInfo, setPropertyInfo] = useState("");
-  const [PropertyMetaData, setPropertyMetaData] = useState("");
+  const [propertyInfo, setPropertyInfo] = useState<PropertyInfoType>({
+    items: [],
+    hasMore: false,
+    limit: 0,
+    offset: 0,
+    count: 0,
+    links: [],
+  });
+
+  const [PropertyMetaData, setPropertyMetaData] =
+    useState<PropertyMetaDataType>({ items: [], limit: 6 });
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(true);
-  const [page, setPage] = useState(0);
-  const [offset, setOffset] = useState("");
+  const [page, setPage] = useState<number>(0);
+  const [offset, setOffset] = useState<number>();
   const [shortlisted, setShortListed] = useState(
     localStorage.getItem("shortlisted")
       ? JSON.parse(localStorage.getItem("shortlisted"))
       : []
   );
-  const prevPage = useRef();
+  const prevPage = useRef<number>();
   const { asking_type, status } = useParams();
-
-  // Shortlist handler
-  const shortlistHandler = (property_id) => {
-    setShortListed((prev) => {
-      if (prev.includes(property_id)) {
-        return prev.filter((id) => id !== property_id);
-      } else {
-        return [...prev, property_id];
-      }
-    });
-  };
 
   // Page handler
   const pageHandler = (selectedPage) => {
