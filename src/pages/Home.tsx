@@ -16,7 +16,7 @@ import past_success_sustainable from "../assets/past-success-sustainable.jpg";
 import { useGSAP } from "@gsap/react";
 import { two_column_img_transformation } from "../js/two_column_img_gsap.js";
 import { our_values_transformation } from "../js/our_values.js";
-import { useEffect } from "react";
+import { Link } from "react-router-dom";
 
 function Home() {
   useGSAP(() => {
@@ -39,12 +39,15 @@ function Home() {
               Expert Care Without Exception From a Market leading Estate Agency.
             </h3>
             <div className="button-container">
-              <a href="./propertyinfo/sale/all">
+              <Link to="/propertyinfo/sale/all">
                 <button>Properties For Sale</button>
-              </a>
-              <a href="./valuationform">
+              </Link>
+              <Link to="/propertyinfo/let/open">
+                <button>Properties To Rent</button>
+              </Link>
+              <Link to="/valuationform">
                 <button>Book Valuation</button>
-              </a>
+              </Link>
             </div>
           </div>
         </div>
@@ -55,12 +58,15 @@ function Home() {
               A Stress-Free Experience from our award-winning Rentals Team.
             </h3>
             <div className="button-container">
-              <a href="/propertyinfo/let/open">
+              <Link to="/propertyinfo/let/open">
                 <button>Properties To Rent</button>
-              </a>
-              <a href="./valuationform">
+              </Link>
+              <Link to="/propertyinfo/sale/all">
+                <button>Properties For Sale</button>
+              </Link>
+              <Link to="/valuationform">
                 <button>Book Valuation</button>
-              </a>
+              </Link>
             </div>
           </div>
         </div>

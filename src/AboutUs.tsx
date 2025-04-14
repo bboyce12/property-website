@@ -2,6 +2,7 @@ import rightmoveLogo from "./assets/rightmove-logo.png";
 import onthemarketLogo from "./assets/onTheMarket-logo.png";
 import zooplaLogo from "./assets/zoopla-logo.png";
 import "./AboutUs.css";
+import { Link } from "react-router-dom";
 
 function AboutUs() {
   return (
@@ -73,8 +74,8 @@ function AboutUs() {
               only be offered by an owner-run business.
             </p>
             <div className="about-us-ahref-container">
-              <a href="/">Find Out More</a>
-              <a href="/about/reviews">Our Reviews</a>
+              <Link to="/">Find Out More</Link>
+              <Link to="/about/reviews">Our Reviews</Link>
             </div>
           </div>
 

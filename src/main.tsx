@@ -4,6 +4,7 @@ import { createRoot } from "react-dom/client";
 import "./index.css";
 import App from "./App.tsx";
 import { fadeIn } from "./js/fadeIn";
+import { HashRouter, HashRouter as Router } from "react-router-dom";
 
 // Ensure createRoot is only called once
 const rootElement = document.getElementById("root");
@@ -18,7 +19,9 @@ const Main: React.FC = () => {
   }, []); // Runs once on mount
   return (
     <React.StrictMode>
-      <App />
+      <HashRouter>
+        <App />
+      </HashRouter>
     </React.StrictMode>
   );
 };

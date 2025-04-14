@@ -1,4 +1,4 @@
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import { Route, Routes } from "react-router-dom";
 import "./App.css";
 import Home from "./pages/Home";
 import Sales from "./pages/Sales";
@@ -18,6 +18,7 @@ import GetInTouch from "./GetInTouch";
 import WhyUsPage from "./pages/WhyUsPage";
 import { createRoot } from "react-dom/client";
 import { useEffect } from "react";
+import Nav from "./Navbar";
 
 export default function App() {
   useEffect(() => {
@@ -25,23 +26,17 @@ export default function App() {
   }, []);
 
   return (
-    <Router basename="/property-website">
-      <Navbar />
-      <Routes>
-        <Route path="/propertyinfo/:asking_type/:status" element={<Sales />} />
-        <Route
-          path="/savedproperty/:asking_type/"
-          element={<SavedProperty />}
-        />
-        <Route path="/about/aboutus" element={<AboutUs />} />
-        <Route path="/about/reviews" element={<ReviewPage />} />
-        <Route path="/" element={<Home />} />
-        <Route path="/property/sale" element={<PropertyForSale />} />
-        <Route path="/stampdutycalculator" element={<StampDutyCalculator />} />
-        <Route path="/getintouch" element={<GetInTouch />} />
-        <Route path="/valuationform" element={<ValuationForm />} />
-        <Route path="/whyus" element={<WhyUsPage />} />
-      </Routes>
-    </Router>
+    <Routes>
+      <Route path="/propertyinfo/:asking_type/:status" element={<Sales />} />
+      <Route path="/savedproperty/:asking_type/" element={<SavedProperty />} />
+      <Route path="/" element={<Home />} />
+      <Route path="/about/aboutus" element={<AboutUs />} />
+      <Route path="/about/reviews" element={<ReviewPage />} />
+      <Route path="/property/sale" element={<PropertyForSale />} />
+      <Route path="/stampdutycalculator" element={<StampDutyCalculator />} />
+      <Route path="/getintouch" element={<GetInTouch />} />
+      <Route path="/valuationform" element={<ValuationForm />} />
+      <Route path="/whyus" element={<WhyUsPage />} />
+    </Routes>
   );
 }
