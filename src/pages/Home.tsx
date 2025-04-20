@@ -34,16 +34,13 @@ function Home() {
       >
         <div className="col" id="left-container">
           <div className="content">
-            <h5>SALES</h5>
+            <h5>SA</h5>
             <h3>
               Expert Care Without Exception From a Market leading Estate Agency.
             </h3>
             <div className="button-container">
               <Link to="/propertyinfo/sale/all">
                 <button>Properties For Sale</button>
-              </Link>
-              <Link to="/propertyinfo/let/open">
-                <button>Properties To Rent</button>
               </Link>
               <Link to="/valuationform">
                 <button>Book Valuation</button>

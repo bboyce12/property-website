@@ -74,7 +74,7 @@ function AboutUs() {
               only be offered by an owner-run business.
             </p>
             <div className="about-us-ahref-container">
-              <Link to="/">Find Out More</Link>
+              <Link to="/about/reviews">Find Out More</Link>
               <Link to="/about/reviews">Our Reviews</Link>
             </div>
           </div>
