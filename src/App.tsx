@@ -28,28 +28,13 @@ export default function App() {
 
   return (
     <>
-      <div>
-        <Link to="/google.com">Google here3</Link>
-        <Link to="/propertyinfo/sale/all">
-          <button>Properties For Sale</button>
-        </Link>
-      </div>
-      <Routes>
-        <Route path="/" element={<AboutUs />} />
-        <Route path="/about/reviews" element={<ReviewPage />} />
-        <Route path="/google.com" element={<h1>Arrived google</h1>} />
-      </Routes>
-    </>
-  );
-}
-
-/* 
-<Route path="/propertyinfo/:asking_type/:status" element={<Sales />} />
+        <Routes>
+        <Route path="/propertyinfo/:asking_type/:status" element={<Sales />} />
         <Route
           path="/savedproperty/:asking_type/"
           element={<SavedProperty />}
         />
-<Route path="/about/aboutus" element={<AboutUs />} />
+        <Route path="/about/aboutus" element={<AboutUs />} />
         <Route path="/about/reviews" element={<ReviewPage />} />
         <Route path="/property/sale" element={<PropertyForSale />} />
         <Route path="/stampdutycalculator" element={<StampDutyCalculator />} />
@@ -57,4 +42,9 @@ export default function App() {
         <Route path="/valuationform" element={<ValuationForm />} />
         <Route path="/whyus" element={<WhyUsPage />} />
 
-*/
+      </Routes>
+    </>
+  );
+}
+
+
