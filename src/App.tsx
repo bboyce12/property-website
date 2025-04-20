@@ -19,7 +19,6 @@ import WhyUsPage from "./pages/WhyUsPage";
 import { createRoot } from "react-dom/client";
 import { useEffect } from "react";
 import Nav from "./Navbar";
-import { Link } from "react-router-dom";
 
 export default function App() {
   useEffect(() => {
@@ -28,12 +27,13 @@ export default function App() {
 
   return (
     <>
-        <Routes>
+      <Routes>
         <Route path="/propertyinfo/:asking_type/:status" element={<Sales />} />
         <Route
           path="/savedproperty/:asking_type/"
           element={<SavedProperty />}
         />
+        <Route path="/" element={<Home />} />
         <Route path="/about/aboutus" element={<AboutUs />} />
         <Route path="/about/reviews" element={<ReviewPage />} />
         <Route path="/property/sale" element={<PropertyForSale />} />
@@ -41,10 +41,7 @@ export default function App() {
         <Route path="/getintouch" element={<GetInTouch />} />
         <Route path="/valuationform" element={<ValuationForm />} />
         <Route path="/whyus" element={<WhyUsPage />} />
-
       </Routes>
     </>
   );
 }
-
-
