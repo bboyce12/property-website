@@ -18,7 +18,6 @@ import GetInTouch from "./GetInTouch";
 import WhyUsPage from "./pages/WhyUsPage";
 import { createRoot } from "react-dom/client";
 import { useEffect } from "react";
-import Nav from "./Navbar";
 
 export default function App() {
   useEffect(() => {
@@ -27,6 +26,7 @@ export default function App() {
 
   return (
     <>
+      <Navbar />
       <Routes>
         <Route path="/propertyinfo/:asking_type/:status" element={<Sales />} />
         <Route
