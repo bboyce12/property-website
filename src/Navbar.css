@@ -69,19 +69,7 @@
     height: 100px;
   }
 
-  @media (max-width: 767px) {
-    .dropdown-menu{
-      max-width: 40vw;
-    }
-    .right-nav-items
-    {
-      position: absolute;
-      top: 10%;
-      right: 0;
-    }
-   }
-
-   @media (max-width: 480px) {
+  @media (max-width: 991px) {
     .dropdown-menu{
       max-width: 40vw;
     }
