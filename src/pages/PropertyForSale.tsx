@@ -167,7 +167,10 @@ function PropertyForSale() {
                     id="property-floorplan"
                   >
                     <h2>Floor Plan</h2>
-                    <img src={property.floor_plan_uri} />
+                    <img
+                      src={property.floor_plan_uri}
+                      className="floor-plan-img"
+                    />
                   </div>
                 </div>
                 <div className="property-bottom-right-container">

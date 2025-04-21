@@ -50,14 +50,15 @@
 
 @media (max-width: 768px) {
     .gallery-container {
-        position: fixed;
+        justify-content: flex-start;
         flex-direction: column-reverse;
-        align-items: end;
-        justify-content: center;
+        height:70vh;
+        top: 0;
     }
 
     .gallery-left-container {
-        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+        display: flex;
+        flex-direction: row;
     }
 
     .gallery-left-container img{
